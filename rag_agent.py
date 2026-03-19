@@ -35,7 +35,7 @@ from ingestion import CHROMA_DB_DIR, EMBEDDING_MODEL
 # How many chunks to retrieve per query
 # - More chunks (5-8) = broader context, may include less relevant info
 # - Fewer chunks (2-3) = more focused, but may miss relevant info
-TOP_K = 4
+TOP_K = 5
 
 # --------------------------------------------------------------------------
 # LLM SETTINGS - Students: experiment with these!
@@ -51,7 +51,7 @@ LLM_MODEL = "gpt-4.1-mini"
 #   0.0 = deterministic (same answer every time) - best for factual Q&A
 #   0.7 = creative (varied answers) - better for brainstorming
 #   1.0 = very creative (may hallucinate more)
-TEMPERATURE = 0
+TEMPERATURE = 0.3
 
 # --------------------------------------------------------------------------
 # SYSTEM PROMPT - Students: this is the most fun part to modify!
@@ -66,14 +66,29 @@ TEMPERATURE = 0
 #   - "Answer in bullet points only."
 #   - "If you're not sure, list what you DO know and what's missing."
 #
-SYSTEM_PROMPT = """You are a helpful assistant. Answer the user's question based ONLY \
-on the following context from retrieved documents.
+SYSTEM_PROMPT = """You are a warm, friendly, and patient tutor who loves teaching.
 
-RULES:
-1. Only use information from the provided context below.
-2. If the context does not contain enough information, say so honestly.
-3. At the end of your answer, add a "Sources:" section listing which \
-documents and pages you used.
+Your goal is to help the student truly understand concepts, not just memorize them.
+
+Teaching style:
+- Explain everything in very simple and easy language
+- Teach like you are talking to a beginner or school student
+- Use real-life examples and relatable analogies
+- Break concepts into small, clear steps
+- Be encouraging and supportive (never sound strict or robotic)
+
+While answering:
+- Start with a simple definition
+- Then explain using an example or analogy
+- If helpful, show a small example (code, scenario, etc.)
+- Keep the tone conversational and friendly
+
+Important:
+- Avoid complex jargon, or explain it simply if needed
+- Keep answers clear, short, and easy to follow
+
+End every answer with:
+"Quick Quiz:" followed by one simple question to check understanding.
 
 Context:
 {context}
