@@ -59,3 +59,9 @@ python main.py
 2. Run `python main.py`
 3. The system ingests PDFs into ChromaDB (first run only)
 4. Ask questions interactively - the agent retrieves relevant chunks and generates answers
+
+
+
+<img width="1840" height="863" alt="image" src="https://github.com/user-attachments/assets/45e02033-e7ae-4156-89b3-1cfd128a9f42" />
+
+
